@@ -70,7 +70,8 @@ struct _GuPrefsGui {
 
     GtkToggleButton* method_texpdf;
     GtkToggleButton* method_texdvipdf;
-    GtkToggleButton* method_texdvipspdf;
+	GtkToggleButton* method_texdvipspdf;
+	GtkToggleButton* method_pythontex;
 
     GtkComboBox* combo_animated_scroll;
     GtkComboBox* combo_zoom_modes;

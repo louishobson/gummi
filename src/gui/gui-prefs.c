@@ -130,6 +130,8 @@ GuPrefsGui* prefsgui_init (GtkWindow* mainwindow) {
 			GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "method_texdvipdf"));
 	p->method_texdvipspdf =
 			GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "method_texdvipspdf"));
+	p->method_pythontex =
+			GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "method_pythontex"));
 
 	p->opt_shellescape =
 			GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "opt_shellescape"));
@@ -321,6 +323,9 @@ static void set_tab_compilation_settings (GuPrefsGui* prefs) {
 	}
 	else if (latex_method_active ("texdvipspdf")) {
 		gtk_toggle_button_set_active (prefs->method_texdvipspdf, TRUE);
+	}
+	else if (latex_method_active ("pythontex")) {
+		gtk_toggle_button_set_active (prefs->method_pythontex, TRUE);
 	}
 
 	if (!latex_use_shellescaping())

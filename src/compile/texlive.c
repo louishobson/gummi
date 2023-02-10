@@ -134,6 +134,12 @@ gchar* texlive_get_command (const gchar* method, gchar* workfile, gchar* basenam
     gchar *script = g_build_filename (GUMMI_LIBS, "latex_dvi.sh", NULL);
     #endif
 
+    #ifdef WIN32
+    gchar *pythonscript = g_build_filename (GUMMI_LIBS, "latex_pythontex.cmd", NULL);
+    #else
+    gchar *pythonscript = g_build_filename (GUMMI_LIBS, "latex_pythontex.sh", NULL);
+    #endif
+
     if (STR_EQU (method, "texpdf")) {
 
         texcmd = g_strdup_printf("%s %s %s \"%s\"", typesetter,
@@ -144,10 +150,18 @@ gchar* texlive_get_command (const gchar* method, gchar* workfile, gchar* basenam
         texcmd = g_strdup_printf("%s pdf "
                 "\"%s\" \"%s\" \"%s\" \"%s\" \"%s\"", script,
                 flags, outdir, workfile, C_TMPDIR, dviname);
-    } else {
+    } else if (STR_EQU (method, "texdvipspdf")) {
         texcmd = g_strdup_printf("%s ps "
                 "\"%s\" \"%s\" \"%s\" \"%s\" \"%s\" \"%s\"", script,
                 flags, outdir, workfile, C_TMPDIR, dviname, psname);
+    } else
+    {
+        texcmd = g_strdup_printf("%s \"%s\" \"%s\" \"%s\"", 
+                                                pythonscript,
+                                                flags,
+                                                outdir,
+                                                workfile);
+                                                slog ( 0, texcmd );
     }
 
     g_free(script);

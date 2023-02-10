@@ -751,6 +751,14 @@ void on_method_texdvipspdf_toggled (GtkToggleButton* widget, void* user) {
 }
 
 G_MODULE_EXPORT
+void on_method_pythontex_toggled (GtkToggleButton* widget, void* user) {
+    if (gtk_toggle_button_get_active (widget)) {
+        config_set_string ("Compile", "steps", "pythontex");
+        slog (L_INFO, "Changed compile method to \"pythontex\"\n");
+    }
+}
+
+G_MODULE_EXPORT
 void toggle_shellescape (GtkToggleButton* widget, void* user) {
     gboolean newval = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
     config_set_boolean ("Compile", "shellescape", newval);

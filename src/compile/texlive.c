@@ -134,7 +134,6 @@ gchar* texlive_get_command (const gchar* method, gchar* workfile, gchar* basenam
 	gchar *script = g_build_filename (GUMMI_LIBS, "latex_dvi.sh", NULL);
 #endif
 
-<<<<<<< HEAD
     #ifdef WIN32
     gchar *pythonscript = g_build_filename (GUMMI_LIBS, "latex_pythontex.cmd", NULL);
     #else
@@ -164,15 +163,6 @@ gchar* texlive_get_command (const gchar* method, gchar* workfile, gchar* basenam
                                                 workfile);
                                                 slog ( 0, texcmd );
     }
-=======
-#ifdef WIN32
-	gchar *pythonscript = g_build_filename (GUMMI_LIBS, "latex_pythontex.cmd", NULL);
-#else
-	gchar *pythonscript = g_build_filename (GUMMI_LIBS, "latex_pythontex.sh", NULL);
-#endif
-
-	if (STR_EQU (method, "texpdf")) {
->>>>>>> 46188c5d014e82cc555b18dd157a2a1df6c8f2c4
 
 		texcmd = g_strdup_printf("%s %s %s \"%s\"", typesetter,
 								 flags,
